@@ -12,7 +12,7 @@ if($_POST['submit'] == "OK" && file_exists("../private/passwd"))
 				{
 					$elem['passwd'] = hash(whirlpool, $_POST['newpw']);
 					file_put_contents("../private/passwd", serialize($tab));
-					header("Location: ./login.html");
+					header("Location: ../account.php");
 					exit ("OK\n");
 				}
 				else

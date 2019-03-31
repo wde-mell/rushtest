@@ -1,3 +1,2 @@
-Panier
 Admin / membre
 CSS

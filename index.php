@@ -4,10 +4,12 @@ session_start();
 $_SESSION['db']['cat'] = array_map('str_getcsv', file("./database/categories.csv"));
 $_SESSION['db']['items'] = array_map('str_getcsv', file("./database/items.csv"));
 
+$_SESSION['order'] = 0;
+
 function display_item($item)
 {
 	echo '<center><figure>
-		<form method="POST" action="./Menus/cart.php">
+		<form method="POST" action="./cart.php">
 			<input type="hidden" name="add" value="' . $item[0] . '">
 			<input type="hidden" name="cat" value="' . $_GET['cat'] . '">
 			<input class="buy" type="image" src="http://www.clker.com/cliparts/5/3/v/F/2/k/small-cart-hi.png" alt="Buy" /></input>
@@ -36,11 +38,11 @@ function display_cat()
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="./CSS/index.css" />
-		<?php include("./Menus/header.php"); ?>
+		<?php include("./header.php"); ?>
 	</head>
 		<center><div id="catmenu">
 			<ul class="niveau1">
-				<li class="sous-menu"><span class=cattitle>Cat&eacute;gories</span>
+				<li class="sous-menu"><span class=cattitle><B>Genres</B></span>
 					<ul class="niveau2">
 						<?php
 							foreach ($_SESSION['db']['cat'] as $elem)
@@ -51,29 +53,39 @@ function display_cat()
 				</li>
 			</ul>
 		</div></center>
-		<?php if ($_GET['cat'])  : ?>
-			<?php display_cat(); ?>
+		<?php if ($_GET['cat']) : ?>
+		<?php display_cat(); ?>
 		<?php else : ?>
 		<!-- Slideshow Container Div -->
 		<div class="container"> 
 		
 		<!-- Full-width images with caption text -->
 		<div class="image-sliderfade fade"> 
-			<img src="https://static.fnac-static.com/multimedia/Images/FR/NR/e7/49/90/9456103/1540-1/tsp20180323102255/Riot-City-Outlaws.jpg" style="width:100%"> 
+			<a href="index.php?cat=Celtic"><img src="https://static.fnac-static.com/multimedia/Images/FR/NR/e7/49/90/9456103/1540-1/tsp20180323102255/Riot-City-Outlaws.jpg" style="width:100%"></a> 
 			<div class="text">Paddy and the Rats</div> 
 		</div> 
 		
 		<div class="image-sliderfade fade"> 
-			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Sum41_doesthislookinfected.png/220px-Sum41_doesthislookinfected.png" style="width:100%"> 
+		<a href="index.php?cat=Rock"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Sum41_doesthislookinfected.png/220px-Sum41_doesthislookinfected.png" style="width:100%"> </a>
 			<div class="text">Sum 41</div> 
 		</div> 
 		
 		<div class="image-sliderfade fade"> 
-			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/NirvanaNevermindalbumcover.jpg/220px-NirvanaNevermindalbumcover.jpg" style="width:100%"> 
+		<a href="index.php?cat=Rock"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/NirvanaNevermindalbumcover.jpg/220px-NirvanaNevermindalbumcover.jpg" style="width:100%"> 
 			<div class="text">Nirvana</div> 
-		</div> 
-		
+		</div>
 
+		<div class="image-sliderfade fade"> 
+		<a href="index.php?cat=Electro"><img src="https://static.fnac-static.com/multimedia/Images/FR/NR/4c/c8/9e/10405964/1540-1/tsp20180823144545/7-Digisleeve-Edition-Limitee-Inclus-4-titres-bonus.jpg" style="width:100%"></a> 
+			<div class="text">David Guetta</div> 
+		</div>  
+
+		<div class="image-sliderfade fade"> 
+		<a href="index.php?cat=Rock"><img src="https://static.fnac-static.com/multimedia/Images/FR/NR/5e/84/a8/11043934/1540-1/tsp20190322122034/Phoenix.jpg" style="width:100%"> 
+			<div class="text">Soprano</div> 
+		</div>
+
+		
 		</div> 
 		<br> 
 		
@@ -82,8 +94,14 @@ function display_cat()
 		<span class="dot"></span>  
 		<span class="dot"></span>  
 		<span class="dot"></span>  
+		<span class="dot"></span>  
+		<span class="dot"></span>  
 		<?php endif ;?>
 </div> 
 	<script type="text/javascript" src="./js/slide.js"></script>
 	</body>
 </html>
+	</body>
+</html>
+<?php
+?>
